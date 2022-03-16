@@ -9,5 +9,6 @@ public class CartTest extends BaseOptionTest {
         loginPage.login("standard_user", "secret_sauce");
         productsPage.addToCart("Sauce Labs Backpack");
 
+
     }
 }

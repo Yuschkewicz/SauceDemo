@@ -21,4 +21,17 @@ public class LoginTest extends BaseOptionTest {
         loginPage.login("", "test");
         assertEquals(loginPage.getError(), "Epic sadface: Username is required");
     }
+
+    @Test
+    public void userNameShouldBeLockedOut(){
+        loginPage.open();
+        loginPage.login("locked_out_user","secret_sauce");
+        assertEquals(loginPage.getError(),"Epic sadface: Sorry, this user has been locked out.");
+    }
+    @Test
+    public void userPasswordIsNotCorrect(){
+        loginPage.open();
+        loginPage.login("problem_user","secret_sauce13");
+        assertEquals(loginPage.getError(),"Epic sadface: Username and password do not match any user in this service");
+    }
 }
