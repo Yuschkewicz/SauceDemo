@@ -5,7 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.CartPage;
+
+import pages.CheckOutPages;
 import pages.LoginPage;
 import pages.ProductsPage;
 
@@ -16,7 +17,7 @@ public class BaseOptionTest {
     WebDriver driver;
     LoginPage loginPage;
     ProductsPage productsPage;
-    CartPage cartPage;
+    CheckOutPages checkOutPages;
 
     @BeforeMethod
     public void setup() {
@@ -28,6 +29,7 @@ public class BaseOptionTest {
 
         loginPage=new LoginPage(driver);
         productsPage=new ProductsPage(driver);
+        checkOutPages=new CheckOutPages(driver);
     }
 
 

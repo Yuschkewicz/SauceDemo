@@ -35,24 +35,13 @@ public class ProductsPage extends BasePage {
         addToCart("Sauce Labs Bike Light");
         addToCart("Sauce Labs Bolt T-Shirt");
         deleteToCart("Sauce Labs Bolt T-Shirt");
-
-    }
-    public void goToTheCart() {
         driver.findElement(By.id("shopping_cart_container")).click();
         String name = driver.findElement(By.id("checkout")).getText();
         assertEquals(name,"CHECKOUT");
         driver.findElement(By.id("checkout")).click();
-
-        }
-    public void checkTotalSum(){
-        String checkTotalSum = driver.findElement(By.cssSelector(".summary_total_label")).getText();
-        assertEquals(checkTotalSum,"Total: $43.18");
-        driver.findElement(By.id("finish")).click();
-        String linktext2 = driver.findElement(By.className("complete-header")).getText();
-        System.out.println(linktext2);
-        assertEquals(linktext2,"THANK YOU FOR YOUR ORDER");
-        driver.findElement(By.id("back-to-products")).click();
     }
+
+
 
     public void sort(String sorting) {
         WebElement sortingElement = driver.findElement(sort);
