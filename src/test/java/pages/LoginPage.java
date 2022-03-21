@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
@@ -33,7 +34,8 @@ public class LoginPage extends BasePage {
     }
     public void registration(){
         open();
-        login("standard_user","secret_sauce");
+        login("performance_glitch_user","secret_sauce");
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
 
