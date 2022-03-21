@@ -1,4 +1,6 @@
 package pages;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,13 +31,20 @@ public class ProductsPage extends BasePage {
         String valueSauce = driver.findElement(By.className("shopping_cart_badge")).getText();
         assertEquals(valueSauce,"2");
     }
-
+    public static final By PAGE_TITLE=By.cssSelector(".title");
+    public String getTitle(){
+        return driver.findElement(PAGE_TITLE).getText();
+    }
+public void waitForLoading(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(PAGE_TITLE));
+}
     public void chooseThreeItemAndChangeOnTwo(){
         addToCart("Sauce Labs Backpack");
         addToCart("Sauce Labs Bike Light");
         addToCart("Sauce Labs Bolt T-Shirt");
         deleteToCart("Sauce Labs Bolt T-Shirt");
         driver.findElement(By.id("shopping_cart_container")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Your Cart']")));
         String name = driver.findElement(By.id("checkout")).getText();
         assertEquals(name,"CHECKOUT");
         driver.findElement(By.id("checkout")).click();
