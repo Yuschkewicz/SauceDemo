@@ -4,7 +4,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import tests.BaseOptionTest;
 import org.openqa.selenium.WebElement;
 
 import static org.testng.Assert.assertEquals;
@@ -38,6 +37,8 @@ public class ProductsPage extends BasePage {
 public void waitForLoading(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(PAGE_TITLE));
 }
+
+
     public void chooseThreeItemAndChangeOnTwo(){
         addToCart("Sauce Labs Backpack");
         addToCart("Sauce Labs Bike Light");
@@ -48,6 +49,9 @@ public void waitForLoading(){
         String name = driver.findElement(By.id("checkout")).getText();
         assertEquals(name,"CHECKOUT");
         driver.findElement(By.id("checkout")).click();
+    }
+    public void goTotheCart(){
+        driver.findElement(By.id("shopping_cart_container")).click();
     }
 
 

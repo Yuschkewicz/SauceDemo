@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.testng.Assert.assertEquals;
 
@@ -19,6 +20,7 @@ public class CheckOutPages extends BasePage{
 
     public void openUserInfo(){
         driver.get(baseUrl+"checkout-step-one.html");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(USER_FIRSTNAME));
 
 }
 

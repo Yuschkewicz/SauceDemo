@@ -1,28 +1,42 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.managers.EdgeDriverManager;
+import io.github.bonigarcia.wdm.managers.OperaDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.opera.OperaDriver;
+import org.testng.annotations.*;
 
 import pages.CheckOutPages;
 import pages.LoginPage;
 import pages.ProductsPage;
 
 import java.util.concurrent.TimeUnit;
-
-public class BaseOptionTest {
+@Listeners(TestListener.class)
+public class BaseTest {
 
     WebDriver driver;
     LoginPage loginPage;
     ProductsPage productsPage;
     CheckOutPages checkOutPages;
 
+
+@Parameters({"browser"})
     @BeforeMethod
-    public void setup() {
+    public void setup(@Optional("chrome")String browser) {
+    if(browser.equalsIgnoreCase("chrome")){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+    }else if(browser.equalsIgnoreCase("EDGE")){
+        WebDriverManager.edgedriver().setup();
+        driver=new EdgeDriver();
+    }else if(browser.equalsIgnoreCase("Opera")){
+        WebDriverManager.operadriver().setup();
+        driver=new OperaDriver();
+    }
+//
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
