@@ -28,7 +28,7 @@ public class ProductsPage extends BasePage {
     public void deleteToCart(String product){
         driver.findElement(By.xpath(String.format(productLocatorDelete, product))).click();
         String valueSauce = driver.findElement(By.className("shopping_cart_badge")).getText();
-        assertEquals(valueSauce,"2");
+        assertEquals(valueSauce,"x");
     }
     public static final By PAGE_TITLE=By.cssSelector(".title");
     public String getTitle(){
