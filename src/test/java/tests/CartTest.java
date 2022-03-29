@@ -11,7 +11,7 @@ public class CartTest extends BaseTest {
         loginPage.registration();
         productsPage.chooseThreeItemAndChangeOnTwo();
         String valueSauce = driver.findElement(By.className("shopping_cart_badge")).getText();
-        assertEquals(valueSauce,"2");
+        assertEquals(valueSauce, "2");
 
 
     }
