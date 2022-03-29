@@ -8,7 +8,7 @@ public class BasePage {
     WebDriverWait wait;
     String baseUrl ="https://www.saucedemo.com/";
     public BasePage(WebDriver driver){
-        this.driver =driver;
-        wait= new WebDriverWait(driver,10);
+        this.driver=driver;
+        wait = new WebDriverWait(driver,10);
     }
 }

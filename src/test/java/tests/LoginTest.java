@@ -11,18 +11,18 @@ public class LoginTest extends BaseTest {
     @DataProvider(name = "Входящие данные для негативных тестов")
     public Object[][] loginData() {
         return new Object[][]{
-                {"test", "","Epic sadface: Password is required"},
-                {"", "test","Epic sadface: Username is required"},
-                {"locked_out_user", "secret_sauce","Epic sadface: Sorry, this user has been locked out."},
+                {"test", "", "Epic sadface: Password is required"},
+                {"", "test", "Epic sadface: Username is required"},
+                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
 
         };
     }
 
     @Test(dataProvider = "Входящие данные для негативных тестов")
-    public void passwordShouldBeRequired(String user,String password, String error) {
+    public void passwordShouldBeRequired(String user, String password, String error) {
 
         loginPage.open();
-        loginPage.login(user,password);
+        loginPage.login(user, password);
         assertEquals(loginPage.getError(), error);
     }
 
@@ -34,15 +34,16 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(description = " Проверка на блокировку пользователя")
-    public void userNameShouldBeLockedOut(){
+    public void userNameShouldBeLockedOut() {
         loginPage.open();
-        loginPage.login("locked_out_user","secret_sauce");
-        assertEquals(loginPage.getError(),"Epic sadface: Sorry, this user has been locked out.");
+        loginPage.login("locked_out_user", "secret_sauce");
+        assertEquals(loginPage.getError(), "Epic sadface: Sorry, this user has been locked out.");
     }
+
     @Test(description = "Проверка на валидность пароля")
-    public void userPasswordIsNotCorrect(){
+    public void userPasswordIsNotCorrect() {
         loginPage.open();
-        loginPage.login("problem_user","secret_sauce13");
-        assertEquals(loginPage.getError(),"Epic sadface: Username and password do not match any user in this service");
+        loginPage.login("problem_user", "secret_sauce13");
+        assertEquals(loginPage.getError(), "Epic sadface: Username and password do not match any user in this service");
     }
 }
