@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 public class CheckoutTest extends BaseTest {
 
-    @Test(description = "Проверка функциональности покупки товара", retryAnalyzer = Retry.class)
+    @Test(description = "checking the functionality of the site and the ability to make a purchase", retryAnalyzer = Retry.class)
     public void checkOutTwoItems() {
         loginPage.registration();
         productsPage.chooseThreeItemAndChangeOnTwo();

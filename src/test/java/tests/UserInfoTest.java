@@ -8,7 +8,7 @@ import static org.testng.Assert.assertEquals;
 public class UserInfoTest extends BaseTest {
 
 
-    @DataProvider(name = "Заполнение полей данных пользователя в корзине")
+    @DataProvider(name = "Negative tests for filling in data at checkout")
     public Object[][] formData() {
         return new Object[][]{
                 {"", "test", "11111", "Error: First Name is required"},
@@ -17,7 +17,7 @@ public class UserInfoTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "Заполнение полей данных пользователя в корзине")
+    @Test(dataProvider = "Negative tests for filling in data at checkout")
 
     public void allFieldShouldBeRequired(String firstName, String lastName, String postCode, String error) {
         loginPage.open();
@@ -27,7 +27,7 @@ public class UserInfoTest extends BaseTest {
         assertEquals(checkOutPages.getError2(), error);
     }
 
-    @Test
+    @Test(description = "Last name should be required")
     public void lastNameShouldBeRequired() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -37,7 +37,7 @@ public class UserInfoTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(description = "First name should be required")
     public void firstNameShouldBeRequired() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -46,7 +46,7 @@ public class UserInfoTest extends BaseTest {
         assertEquals(checkOutPages.getError2(), "Error: First Name is required");
     }
 
-    @Test
+    @Test(description = "Zip code should be required")
     public void zipCodeShouldByRequired() {
 
         loginPage.open();

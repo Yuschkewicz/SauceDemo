@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,10 +24,12 @@ public class ProductsPage extends BasePage {
         driver.get(baseUrl + "inventory.html");
     }
 
+    @Step(" Adds item to cart")
     public void addToCart(String product) {
         driver.findElement(By.xpath(String.format(productLocator, product))).click();
     }
 
+    @Step(" Delete item to cart")
     public void deleteToCart(String product) {
         driver.findElement(By.xpath(String.format(productLocatorDelete, product))).click();
         String valueSauce = driver.findElement(By.className("shopping_cart_badge")).getText();
@@ -37,11 +40,15 @@ public class ProductsPage extends BasePage {
         return driver.findElement(PAGE_TITLE).getText();
     }
 
-    public void waitForLoading() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(PAGE_TITLE));
+    @Step("intentionally entered an incorrect value to check the display of the report")
+    public void wrongExpectation() {
+        addToCart("Sauce Labs Bolt T-Shirt");
+        String valueSauce = driver.findElement(By.className("shopping_cart_badge")).getText();
+        assertEquals(valueSauce, "2");
+
     }
 
-
+    @Step("Adding 3 positions and after deleting 1")
     public void chooseThreeItemAndChangeOnTwo() {
         addToCart("Sauce Labs Backpack");
         addToCart("Sauce Labs Bike Light");
@@ -54,11 +61,25 @@ public class ProductsPage extends BasePage {
         driver.findElement(By.id("checkout")).click();
     }
 
-    public void goTotheCart() {
+    @Step("Wrong locator id for red mistake in report")
+    public void specialWrongTestForAllureGrafics() {
+        addToCart("Sauce Labs Backpack");
+        addToCart("Sauce Labs Bike Light");
+        addToCart("Sauce Labs Bolt T-Shirt");
+        deleteToCart("Sauce Labs Bolt T-Shirt");
         driver.findElement(By.id("shopping_cart_container")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Your Cart']")));
+        String name = driver.findElement(By.id("checkout")).getText();
+        assertEquals(name, "CHECKOUT");
+        driver.findElement(By.id("checkoutblabla")).click();
     }
 
+    @Step("specially used wrong locator")
+    public void goTotheCart() {
+        driver.findElement(By.id("shopping_cart_containerBLABLA")).click();
+    }
 
+    @Step(" Sorting alphabetically / ascending and descending prices ")
     public void sort() {
         WebElement sortingElement = driver.findElement(sort);
         Select select = new Select(driver.findElement(By.cssSelector(".product_sort_container")));

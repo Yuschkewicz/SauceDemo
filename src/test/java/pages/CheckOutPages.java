@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,14 +32,17 @@ public class CheckOutPages extends BasePage {
         driver.findElement(By.cssSelector("[value=Continue")).click();
     }
 
+    @Step("Fill out the purchase form using {firstName},{lastName} and {zipCode}")
     public void userInfo() {
         infoUser("Yan", "Glebovich", "223054");
     }
 
+    @Step("Receive an error message when filling out a purchase form ")
     public String getError2() {
         return driver.findElement(ERROR_MESSAGE2).getText();
     }
 
+    @Step("Checksum verification for payment")
     public void checkTotalSum() {
         String checkTotalSum = driver.findElement(By.cssSelector(".summary_total_label")).getText();
         assertEquals(checkTotalSum, "Total: $43.18");
