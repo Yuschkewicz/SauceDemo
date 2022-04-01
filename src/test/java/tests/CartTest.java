@@ -1,6 +1,5 @@
 package tests;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -15,14 +14,6 @@ public class CartTest extends BaseTest {
         assertEquals(valueSauce, "2");
     }
 
-
-    @Step("Wrong locator id for red mistake in report")
-    @Test
-    public void mistakeRedTest() {
-        productsPage.specialWrongTestForAllureGrafics();
-
-
-    }
 
 }
 

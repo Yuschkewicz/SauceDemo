@@ -22,7 +22,7 @@ public class UserInfoTest extends BaseTest {
     public void allFieldShouldBeRequired(String firstName, String lastName, String postCode, String error) {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        checkOutPages.openUserInfo();
+        checkOutPages.fillingUserDataForPayment();
         checkOutPages.infoUser(firstName, lastName, postCode);
         assertEquals(checkOutPages.getError2(), error);
     }
@@ -31,7 +31,7 @@ public class UserInfoTest extends BaseTest {
     public void lastNameShouldBeRequired() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        checkOutPages.openUserInfo();
+        checkOutPages.fillingUserDataForPayment();
         checkOutPages.infoUser("test", "", "11111");
         assertEquals(checkOutPages.getError2(), "Error: Last Name is required");
 
@@ -41,7 +41,7 @@ public class UserInfoTest extends BaseTest {
     public void firstNameShouldBeRequired() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        checkOutPages.openUserInfo();
+        checkOutPages.fillingUserDataForPayment();
         checkOutPages.infoUser("", "test", "11111");
         assertEquals(checkOutPages.getError2(), "Error: First Name is required");
     }
@@ -51,7 +51,7 @@ public class UserInfoTest extends BaseTest {
 
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        checkOutPages.openUserInfo();
+        checkOutPages.fillingUserDataForPayment();
         checkOutPages.infoUser("test", "test", "");
         assertEquals(checkOutPages.getError2(), "Error: Postal Code is required");
 

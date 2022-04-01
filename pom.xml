@@ -12,6 +12,9 @@
         <testng.version>7.4.0</testng.version>
         <selenium.version>4.1.2</selenium.version>
         <wdrm.version>5.1.0</wdrm.version>
+        <allureTestNg.version>2.13.9</allureTestNg.version>
+        <aspectjweaver.version>1.9.6</aspectjweaver.version>
+        <allureMaven.version>2.10.0</allureMaven.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <suiteXmlFile>src/test/resources/regression.xml</suiteXmlFile>
@@ -36,7 +39,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.10.0</version>
+                <version>${allureMaven.version}</version>
             </plugin>
 
         </plugins>
@@ -47,7 +50,7 @@
 
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.9.6</version>
+            <version>${aspectjweaver.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -76,7 +79,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.13.9</version>
+            <version>${allureTestNg.version}</version>
             <scope>test</scope>
         </dependency>
 

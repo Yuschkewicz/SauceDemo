@@ -29,16 +29,13 @@ public class ProductsPage extends BasePage {
         driver.findElement(By.xpath(String.format(productLocator, product))).click();
     }
 
-    @Step(" Delete item to cart")
+    @Step(" Delete item from cart")
     public void deleteToCart(String product) {
         driver.findElement(By.xpath(String.format(productLocatorDelete, product))).click();
         String valueSauce = driver.findElement(By.className("shopping_cart_badge")).getText();
         assertEquals(valueSauce, "2");
     }
 
-    public String getTitle() {
-        return driver.findElement(PAGE_TITLE).getText();
-    }
 
     @Step("intentionally entered an incorrect value to check the display of the report")
     public void wrongExpectation() {
@@ -61,23 +58,6 @@ public class ProductsPage extends BasePage {
         driver.findElement(By.id("checkout")).click();
     }
 
-    @Step("Wrong locator id for red mistake in report")
-    public void specialWrongTestForAllureGrafics() {
-        addToCart("Sauce Labs Backpack");
-        addToCart("Sauce Labs Bike Light");
-        addToCart("Sauce Labs Bolt T-Shirt");
-        deleteToCart("Sauce Labs Bolt T-Shirt");
-        driver.findElement(By.id("shopping_cart_container")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Your Cart']")));
-        String name = driver.findElement(By.id("checkout")).getText();
-        assertEquals(name, "CHECKOUT");
-        driver.findElement(By.id("checkoutblabla")).click();
-    }
-
-    @Step("specially used wrong locator")
-    public void goTotheCart() {
-        driver.findElement(By.id("shopping_cart_containerBLABLA")).click();
-    }
 
     @Step(" Sorting alphabetically / ascending and descending prices ")
     public void sort() {

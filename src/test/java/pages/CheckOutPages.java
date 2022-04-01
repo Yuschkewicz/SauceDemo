@@ -19,12 +19,13 @@ public class CheckOutPages extends BasePage {
         super(driver);
     }
 
-    public void openUserInfo() {
+    public void fillingUserDataForPayment() {
         driver.get(baseUrl + "checkout-step-one.html");
         wait.until(ExpectedConditions.visibilityOfElementLocated(USER_FIRSTNAME));
 
     }
 
+    @Step("Fill out the purchase form using {firstName},{lastName} and {zipCode}")
     public void infoUser(String firstName, String lastName, String zipCode) {
         driver.findElement(USER_FIRSTNAME).sendKeys(firstName);
         driver.findElement(USER_LASTNAME).sendKeys(lastName);
@@ -32,10 +33,6 @@ public class CheckOutPages extends BasePage {
         driver.findElement(By.cssSelector("[value=Continue")).click();
     }
 
-    @Step("Fill out the purchase form using {firstName},{lastName} and {zipCode}")
-    public void userInfo() {
-        infoUser("Yan", "Glebovich", "223054");
-    }
 
     @Step("Receive an error message when filling out a purchase form ")
     public String getError2() {

@@ -33,7 +33,7 @@ public class LoginPage extends BasePage {
         driver.findElement(LOGIN_BUTTON).submit();
     }
 
-    @Step("Using two method open() and login() ")
+    @Step("Registration and stark working ")
     public void registration() {
         open();
         login("performance_glitch_user", "secret_sauce");

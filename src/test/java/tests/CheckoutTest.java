@@ -8,7 +8,7 @@ public class CheckoutTest extends BaseTest {
     public void checkOutTwoItems() {
         loginPage.registration();
         productsPage.chooseThreeItemAndChangeOnTwo();
-        checkOutPages.userInfo();
+        checkOutPages.infoUser("Yan", "Glebovich", "223054");
         checkOutPages.checkTotalSum();
     }
 
