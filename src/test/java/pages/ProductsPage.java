@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,25 +24,28 @@ public class ProductsPage extends BasePage {
         driver.get(baseUrl + "inventory.html");
     }
 
+    @Step(" Adds item to cart")
     public void addToCart(String product) {
         driver.findElement(By.xpath(String.format(productLocator, product))).click();
     }
 
+    @Step(" Delete item from cart")
     public void deleteToCart(String product) {
         driver.findElement(By.xpath(String.format(productLocatorDelete, product))).click();
         String valueSauce = driver.findElement(By.className("shopping_cart_badge")).getText();
         assertEquals(valueSauce, "2");
     }
 
-    public String getTitle() {
-        return driver.findElement(PAGE_TITLE).getText();
+
+    @Step("intentionally entered an incorrect value to check the display of the report")
+    public void wrongExpectation() {
+        addToCart("Sauce Labs Bolt T-Shirt");
+        String valueSauce = driver.findElement(By.className("shopping_cart_badge")).getText();
+        assertEquals(valueSauce, "2");
+
     }
 
-    public void waitForLoading() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(PAGE_TITLE));
-    }
-
-
+    @Step("Adding 3 positions and after deleting 1")
     public void chooseThreeItemAndChangeOnTwo() {
         addToCart("Sauce Labs Backpack");
         addToCart("Sauce Labs Bike Light");
@@ -54,11 +58,8 @@ public class ProductsPage extends BasePage {
         driver.findElement(By.id("checkout")).click();
     }
 
-    public void goTotheCart() {
-        driver.findElement(By.id("shopping_cart_container")).click();
-    }
 
-
+    @Step(" Sorting alphabetically / ascending and descending prices ")
     public void sort() {
         WebElement sortingElement = driver.findElement(sort);
         Select select = new Select(driver.findElement(By.cssSelector(".product_sort_container")));
