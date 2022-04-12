@@ -3,6 +3,7 @@ package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.testng.ITestContext;
@@ -27,6 +28,8 @@ public class BaseTest {
     public void setup(@Optional("chrome") String browser, ITestContext testContext) {
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
+            ChromeOptions options = new ChromeOptions();
+            options.setHeadless(true);
             driver = new ChromeDriver();
         } else if (browser.equalsIgnoreCase("EDGE")) {
             WebDriverManager.edgedriver().setup();
@@ -50,9 +53,12 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void close() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
 
+        }
     }
 }
+
 
 
