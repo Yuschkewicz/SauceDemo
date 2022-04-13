@@ -61,15 +61,14 @@ public class ProductsPage extends BasePage {
 
     @Step(" Sorting alphabetically / ascending and descending prices ")
     public void sort() {
-        WebElement sortingElement = driver.findElement(sort);
-        new Select(driver.findElement(By.cssSelector(".product_sort_container")));
-        String fromAtoZ = driver.findElement(By.className("active_option")).getText();
+                new Select(driver.findElement(By.cssSelector(".product_sort_container")));
+        //String fromAtoZ = driver.findElement(By.className("active_option")).getText();
         //assertEquals(fromAtoZ, "NAME (A TO Z)");
         driver.findElement(By.xpath("//*[@id='header_container']/div[2]/div[2]/span/select/option[3]")).click();
-        String lowToHigh = driver.findElement(By.className("active_option")).getText();
+        //String lowToHigh = driver.findElement(By.className("active_option")).getText();
         //assertEquals(lowToHigh, "PRICE (LOW TO HIGH)");
         driver.findElement(By.xpath("//*[@id='header_container']/div[2]/div[2]/span/select/option[4]")).click();
-        String highToLow = driver.findElement(By.className("active_option")).getText();
+       // String highToLow = driver.findElement(By.className("active_option")).getText();
         //assertEquals(highToLow, "PRICE (HIGH TO LOW)");
 
     }

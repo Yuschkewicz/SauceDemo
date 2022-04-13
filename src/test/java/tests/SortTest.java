@@ -8,6 +8,11 @@ public class SortTest extends BaseTest {
 
         loginPage.registration();
         productsPage.sort();
+
+
+
+
+
     }
 
 
