@@ -30,7 +30,8 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
-            options.setHeadless(true);
+          if( System.getProperty("headless","true").equals("true"))
+            options.addArguments("--headless");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("EDGE")) {
             WebDriverManager.edgedriver().setup();
