@@ -1,5 +1,8 @@
 pipeline {
     agent any
+parameters {
+ gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+}
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -10,7 +13,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/Yuschkewicz/SauceDemo.git'
+               git branch: "${params.BRANCH}", url: 'https://github.com/Yuschkewicz/SauceDemo.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn clean test"
