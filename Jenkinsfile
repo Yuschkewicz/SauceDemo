@@ -1,8 +1,6 @@
 pipeline {
     agent any
-parameters {
- gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-}
+properties([parameters([gitParameter(branch: '', branchFilter: '.*', defaultValue: '', name: 'BRANCH', quickFilterEnabled: false, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'GitParameterDefinition')])])
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
