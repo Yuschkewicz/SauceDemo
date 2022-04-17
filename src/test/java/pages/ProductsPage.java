@@ -77,4 +77,8 @@ public class ProductsPage extends BasePage {
         new Select(driver.findElement(sort)).selectByVisibleText(sorting);
     }
 
+
+
+    
+
 }
