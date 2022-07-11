@@ -12,6 +12,7 @@ import org.testng.annotations.*;
 import pages.CheckOutPages;
 import pages.LoginPage;
 import pages.ProductsPage;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
@@ -22,7 +23,8 @@ public class BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     CheckOutPages checkOutPages;
-
+    String user;
+    String password;
 
 
     @Parameters({"browser"})
@@ -32,7 +34,7 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
-          if( System.getProperty("headless","true").equals("true"))
+          if( System.getProperty("headless","false").equals("true"))
             options.addArguments("--headless");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("EDGE")) {
@@ -56,7 +58,8 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-
+        user = System.getProperty("user", PropertyReader.getProperty("user"));
+        password = System.getProperty("password", PropertyReader.getProperty("password"));
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         checkOutPages = new CheckOutPages(driver);
